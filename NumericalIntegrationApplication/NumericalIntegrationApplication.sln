@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30324.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLibrary", "CommonLibrary\CommonLibrary.csproj", "{F9AED238-27DD-4AD5-9BCB-55967F5208B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientApplication", "ClientApplication\ClientApplication.csproj", "{6F043470-1D2F-45CF-88E5-56AA6F72D610}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpsonsRuleComponent", "SimpsonsRuleComponent\SimpsonsRuleComponent.csproj", "{7E8D956F-03E1-4BB9-9B7E-0F97528663B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RectangleMethodComponent", "RectangleMethodComponent\RectangleMethodComponent.csproj", "{0540DCFF-F33A-4E5A-A65F-337E0B48FA93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrapezoidalRuleComponent", "TrapezoidalRuleComponent\TrapezoidalRuleComponent.csproj", "{C55F07C2-F513-4342-89E2-18AC4DA90980}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParserComponent", "ParserComponent\ParserComponent.csproj", "{F0D32E90-11BF-4259-A5EC-75DBA3A9B887}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculateComponent", "CalculateComponent\CalculateComponent.csproj", "{8CCFFCF0-1BFE-4D8C-ADA0-9880E6A49E21}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9AED238-27DD-4AD5-9BCB-55967F5208B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9AED238-27DD-4AD5-9BCB-55967F5208B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9AED238-27DD-4AD5-9BCB-55967F5208B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9AED238-27DD-4AD5-9BCB-55967F5208B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F043470-1D2F-45CF-88E5-56AA6F72D610}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F043470-1D2F-45CF-88E5-56AA6F72D610}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F043470-1D2F-45CF-88E5-56AA6F72D610}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F043470-1D2F-45CF-88E5-56AA6F72D610}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E8D956F-03E1-4BB9-9B7E-0F97528663B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E8D956F-03E1-4BB9-9B7E-0F97528663B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E8D956F-03E1-4BB9-9B7E-0F97528663B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E8D956F-03E1-4BB9-9B7E-0F97528663B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0540DCFF-F33A-4E5A-A65F-337E0B48FA93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0540DCFF-F33A-4E5A-A65F-337E0B48FA93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0540DCFF-F33A-4E5A-A65F-337E0B48FA93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0540DCFF-F33A-4E5A-A65F-337E0B48FA93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C55F07C2-F513-4342-89E2-18AC4DA90980}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C55F07C2-F513-4342-89E2-18AC4DA90980}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C55F07C2-F513-4342-89E2-18AC4DA90980}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C55F07C2-F513-4342-89E2-18AC4DA90980}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0D32E90-11BF-4259-A5EC-75DBA3A9B887}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0D32E90-11BF-4259-A5EC-75DBA3A9B887}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0D32E90-11BF-4259-A5EC-75DBA3A9B887}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0D32E90-11BF-4259-A5EC-75DBA3A9B887}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CCFFCF0-1BFE-4D8C-ADA0-9880E6A49E21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CCFFCF0-1BFE-4D8C-ADA0-9880E6A49E21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CCFFCF0-1BFE-4D8C-ADA0-9880E6A49E21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CCFFCF0-1BFE-4D8C-ADA0-9880E6A49E21}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
