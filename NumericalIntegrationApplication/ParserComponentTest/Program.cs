@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using System.IO;
-
 using ParserComponent;
 
 namespace ParserComponentTest
@@ -17,9 +10,6 @@ namespace ParserComponentTest
             PostfixNotationExpression parser = new PostfixNotationExpression();
 
             string expression = Console.ReadLine();
-
-            //decimal result = parser.Result(expression);
-            //Console.WriteLine(result.ToString());
 
             Console.WriteLine();
             Console.WriteLine(".................");
