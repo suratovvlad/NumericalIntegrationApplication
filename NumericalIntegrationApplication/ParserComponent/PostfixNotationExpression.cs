@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
+using System.Drawing;
 
 namespace ParserComponent
 {
@@ -8,6 +10,8 @@ namespace ParserComponent
     {
         private List<string> m_operators;
         List<string> m_outputSeparated;
+        List<string> m_parametersList;
+        const string m_pattern = @"^\-?\(?([0-9]{0,3}(\,?[0-9]{3})*(\.?[0-9]*))\)?$";
 
         public PostfixNotationExpression()
         {
@@ -18,6 +22,7 @@ namespace ParserComponent
                 }
             );
             m_outputSeparated = new List<string>();
+            m_parametersList = new List<string>();
         }
 
         private IEnumerable<string> Separate(string input)
@@ -77,6 +82,35 @@ namespace ParserComponent
             }
         }
 
+        private void FindParameters()
+        {
+            List<string> newOutput = new List<string>();
+            foreach (string str in m_outputSeparated)
+            {
+                if (!m_operators.Contains(str))
+                {
+                    Regex regex = new Regex(m_pattern);
+                    if (regex.IsMatch(str))
+                    {
+                        newOutput.Add(str);
+                        continue;
+                    }
+                    m_parametersList.Add(str);
+                    newOutput.Add("{" + m_parametersList.IndexOf(str).ToString() + "}");
+                }
+                else
+                {
+                    newOutput.Add(str);
+                }
+            }
+            m_outputSeparated = newOutput;
+        }
+
+        public List<string> GetParameterList()
+        {
+            return m_parametersList;
+        }
+
         private void ConvertToPostfixNotation(string input)
         {
             m_outputSeparated.Clear();
@@ -134,25 +168,11 @@ namespace ParserComponent
                     m_outputSeparated.Add(c);
                 }
             }
+
+            FindParameters();
         }
 
-        public void ToPostfixNotation(string input)
-        {
-            ConvertToPostfixNotation(input);
-        }
-
-        public string[] GetInPostfixNotation(string input)
-        {
-            ConvertToPostfixNotation(input);
-            return m_outputSeparated.ToArray();
-        }
-
-        public string[] GetLastPostfixNotation()
-        {
-            return m_outputSeparated.ToArray();
-        }
-
-        public decimal Result()
+        public decimal Calculate(string[] paramList)
         {
             Stack<string> stack = new Stack<string>();
             Queue<string> queue = new Queue<string>(m_outputSeparated.ToArray());
@@ -162,7 +182,16 @@ namespace ParserComponent
             {
                 if (!m_operators.Contains(str))
                 {
-                    stack.Push(str);
+                    Regex regex = new Regex(m_pattern);
+                    if (!regex.IsMatch(str))
+                    {
+                        stack.Push(paramList[Convert.ToInt32(str.Substring(1, str.Length - 2))]);
+                    }
+                    else
+                    {
+                        stack.Push(str);
+                    }
+
                     str = queue.Dequeue();
                 }
                 else
@@ -242,6 +271,47 @@ namespace ParserComponent
                 }
             }
             return Convert.ToDecimal(stack.Pop());
+        }
+
+        public void ToPostfixNotation(string input)
+        {
+            ConvertToPostfixNotation(input);
+        }
+
+        public string[] GetInPostfixNotation(string input)
+        {
+            ConvertToPostfixNotation(input);
+            return m_outputSeparated.ToArray();
+        }
+
+        public string[] GetLastPostfixNotation()
+        {
+            return m_outputSeparated.ToArray();
+        }
+
+        public decimal Result(string[] paramList)
+        {
+            return Calculate(paramList);
+        }
+
+        public List<PointF> getPointsList(decimal a, decimal b, decimal n)
+        {
+            List<PointF> pointsList = new List<PointF>();
+
+            decimal h = (a + b) / n;
+
+            for (int i = 0; i < n; i++)
+            {
+                List<string> paramList = new List<string>();
+                decimal x = a + h * i;
+                paramList.Add(Convert.ToString(x));
+                decimal y = Calculate(paramList.ToArray());
+                PointF point = new PointF();
+
+            }
+            
+
+            return pointsList;
         }
     }
 }
