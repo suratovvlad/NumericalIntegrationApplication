@@ -8,15 +8,16 @@ namespace DifferentiationComponentTest
     {
         static private decimal UserFunction(decimal x)
         {
-            return Convert.ToDecimal(Math.Cos(Convert.ToDouble(x)));
+            //return Convert.ToDecimal(Math.Cos(Convert.ToDouble(x)));
+            return x * x * x;
         }
 
-        static void Main(string[] args)
+        static private void FirstTest()
         {
             int n = 5;
             decimal a = -2;
             decimal b = 7;
-            decimal h = (b - a) / n;           
+            decimal h = (b - a) / n;
 
             List<decimal> Xs = new List<decimal>();
             List<decimal> Ys = new List<decimal>();
@@ -39,16 +40,38 @@ namespace DifferentiationComponentTest
 
             Differentiation differentiation = new Differentiation(Xs, Ys);
 
-            //List<decimal> coeffsList = differentiation.GetLagrangeFourthPolynomius(Xs, Ys);
-            //Console.WriteLine("Coeffs of polynomius:");
-            //foreach (decimal coeff in coeffsList)
-            //{
-            //    Console.WriteLine(String.Format("\t{0}", coeff.ToString()));
-            //}
+            List<decimal> coeffsList = differentiation.GetLagrangeFourthPolynomius(Xs, Ys);
+            Console.WriteLine("Polynomius coeffs:");
+            foreach (decimal coeff in coeffsList)
+            {
+                Console.WriteLine(String.Format("\t{0}", coeff.ToString()));
+            }
 
-            //Console.WriteLine();
-            //Console.WriteLine(".................");
-            //Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine(".................");
+            Console.WriteLine();
+
+            List<decimal> firstDerivativeCoeffsList = differentiation.GetFirstDerivativeOfLagrangeFourthPolynomius(Xs, Ys);
+            Console.WriteLine("Polynomius first derivative coeffs:");
+            foreach (decimal coeff in firstDerivativeCoeffsList)
+            {
+                Console.WriteLine(String.Format("\t{0}", coeff.ToString()));
+            }
+
+            Console.WriteLine();
+            Console.WriteLine(".................");
+            Console.WriteLine();
+
+            List<decimal> secondDerivativeCoeffsList = differentiation.GetSecondDerivativeOfLagrangeFourthPolynomius(Xs, Ys);
+            Console.WriteLine("Polynomius second derivative coeffs:");
+            foreach (decimal coeff in secondDerivativeCoeffsList)
+            {
+                Console.WriteLine(String.Format("\t{0}", coeff.ToString()));
+            }
+
+            Console.WriteLine();
+            Console.WriteLine(".................");
+            Console.WriteLine();
 
             foreach (decimal x in Xs)
             {
@@ -60,18 +83,81 @@ namespace DifferentiationComponentTest
             Console.WriteLine(".................");
             Console.WriteLine();
 
+            /// Hand type
             Console.WriteLine("Type x:");
             decimal X = Convert.ToDecimal(Console.ReadLine());
 
             decimal Y = differentiation.CalculateLagrangeFourthPolynomius(X, Xs, Ys);
-
             Console.WriteLine(String.Format("For X = {0}, Y = {1}", X.ToString(), Y.ToString()));
+
+            decimal DY = differentiation.CalculateFirstDerivativeOfLagrangeFourthPolynomius(X, Xs, Ys);
+            Console.WriteLine(String.Format("For X = {0}, DY = {1}", X.ToString(), DY.ToString()));
+
+            decimal D2Y = differentiation.CalculateSecondDerivativeOfLagrangeFourthPolynomius(X, Xs, Ys);
+            Console.WriteLine(String.Format("For X = {0}, D2Y = {1}", X.ToString(), D2Y.ToString()));
+
+            Console.WriteLine();
+            Console.WriteLine(".................");
+            Console.WriteLine();
+            differentiation.Dispose();
+        }
+
+        static private void SecondTest()
+        {
+            int n = 100;
+            decimal a = 0;
+            decimal b = 7;
+            decimal h = (b - a) / n;
+
+            List<decimal> Xs = new List<decimal>();
+            List<decimal> Ys = new List<decimal>();
+            for (int i = 0; i <= n; ++i)
+            {
+                decimal x = a + h * i;
+                Xs.Add(x);
+                Ys.Add(UserFunction(x));
+            }
+
+            Console.WriteLine("Points:");
+            for (int i = 0; i < Xs.Count; ++i)
+            {
+                Console.WriteLine(String.Format("For x = {0}, y = {1}", Xs[i].ToString(), Ys[i].ToString()));
+            }
 
             Console.WriteLine();
             Console.WriteLine(".................");
             Console.WriteLine();
 
-            differentiation.Dispose();
+            Differentiation differentiation = new Differentiation(Xs, Ys);
+
+            List<decimal> firstDerivativesList = differentiation.GetFirstDervative();
+            Console.WriteLine("Polynomius first derivative:");
+            foreach (decimal dy in firstDerivativesList)
+            {
+                Console.WriteLine(String.Format("\t{0}", dy.ToString()));
+            }
+
+            Console.WriteLine();
+            Console.WriteLine(".................");
+            Console.WriteLine();
+
+            List<decimal> secondDerivativesList = differentiation.GetSecondDervative();
+            Console.WriteLine("Polynomius second derivative:");
+            foreach (decimal d2y in secondDerivativesList)
+            {
+                Console.WriteLine(String.Format("\t{0}", d2y.ToString()));
+            }
+
+            Console.WriteLine();
+            Console.WriteLine(".................");
+            Console.WriteLine();
+        }
+
+        static void Main(string[] args)
+        {
+            //FirstTest();
+            //Console.Read();
+            SecondTest();
             Console.Read();
         }
     }
