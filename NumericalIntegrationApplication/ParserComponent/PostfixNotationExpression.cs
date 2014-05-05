@@ -306,7 +306,7 @@ namespace ParserComponent
 
             decimal h = (a + b) / n;
 
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i <= n; i++)
             {
                 List<string> paramList = new List<string>();
                 decimal x = a + h * i;
