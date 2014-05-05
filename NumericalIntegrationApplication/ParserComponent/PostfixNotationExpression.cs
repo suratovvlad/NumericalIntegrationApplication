@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
-using System.Drawing;
+using System.Windows;
 
 namespace ParserComponent
 {
@@ -294,9 +294,9 @@ namespace ParserComponent
             return Calculate(paramList);
         }
 
-        public List<PointF> getPointsList(decimal a, decimal b, decimal n)
+        public List<Point> getPointsList(decimal a, decimal b, decimal n)
         {
-            List<PointF> pointsList = new List<PointF>();
+            List<Point> pointsList = new List<Point>();
 
             decimal h = (a + b) / n;
 
@@ -306,9 +306,10 @@ namespace ParserComponent
                 decimal x = a + h * i;
                 paramList.Add(Convert.ToString(x));
                 decimal y = Calculate(paramList.ToArray());
-                PointF point = new PointF();
-
+                Point point = new Point(Convert.ToDouble(x), Convert.ToDouble(y));
+                pointsList.Add(point);
             }
+            
             
 
             return pointsList;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ParserComponent;
+using System.Windows;
 
 namespace ParserComponentTest
 {
@@ -42,6 +43,17 @@ namespace ParserComponentTest
                 Console.Write(str);
                 Console.Write(" ");
             }
+
+            List<Point> pointsList = parser.getPointsList(0, 100, 100);
+
+            Console.WriteLine();
+            Console.WriteLine(".................");
+            Console.WriteLine("Points:");
+            foreach (Point point in pointsList)
+            {
+                Console.WriteLine(String.Format("\tx = {0}\ty = {1}", point.X.ToString(), point.Y.ToString()));
+            }
+
 
             Console.WriteLine();
             Console.WriteLine(".................");
