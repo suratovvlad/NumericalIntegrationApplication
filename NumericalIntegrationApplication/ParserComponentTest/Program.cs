@@ -44,14 +44,18 @@ namespace ParserComponentTest
                 Console.Write(" ");
             }
 
-            List<Point> pointsList = parser.getPointsList(0, 100, 100);
+            parser.CalculatePoint(0, 100, 100);
+
+            /// In suggestion that counts of Xs and Ys are equal
+            List<decimal> Xs = parser.getXsList();
+            List<decimal> Ys = parser.getYsList();
 
             Console.WriteLine();
             Console.WriteLine(".................");
             Console.WriteLine("Points:");
-            foreach (Point point in pointsList)
+            for (int i = 0; i < Xs.Count; ++i)
             {
-                Console.WriteLine(String.Format("\tx = {0}\ty = {1}", point.X.ToString(), point.Y.ToString()));
+                Console.WriteLine(String.Format("\tx = {0}\ty = {1}", Xs.ToArray()[i].ToString(), Ys.ToArray()[i].ToString()));
             }
 
 

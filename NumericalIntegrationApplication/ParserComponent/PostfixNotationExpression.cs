@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
-using System.Windows;
 
 namespace ParserComponent
 {
     public class PostfixNotationExpression : Component
     {
         private List<string> m_operators;
-        List<string> m_outputSeparated;
-        List<string> m_parametersList;
-        const string m_pattern = @"^\-?\(?([0-9]{0,3}(\,?[0-9]{3})*(\.?[0-9]*))\)?$";
+        private List<string> m_outputSeparated;
+        private List<string> m_parametersList;
+        private const string m_pattern = @"^\-?\(?([0-9]{0,3}(\,?[0-9]{3})*(\.?[0-9]*))\)?$";
+
+        private List<decimal> m_Xs;
+        private List<decimal> m_Ys;
+        
 
         public PostfixNotationExpression()
         {
@@ -23,6 +26,9 @@ namespace ParserComponent
             );
             m_outputSeparated = new List<string>();
             m_parametersList = new List<string>();
+
+            m_Xs = new List<decimal>();
+            m_Ys = new List<decimal>();
         }
 
         private IEnumerable<string> Separate(string input)
@@ -294,9 +300,9 @@ namespace ParserComponent
             return Calculate(paramList);
         }
 
-        public List<Point> getPointsList(decimal a, decimal b, decimal n)
+        public void CalculatePoint(decimal a, decimal b, decimal n)
         {
-            List<Point> pointsList = new List<Point>();
+       
 
             decimal h = (a + b) / n;
 
@@ -306,13 +312,19 @@ namespace ParserComponent
                 decimal x = a + h * i;
                 paramList.Add(Convert.ToString(x));
                 decimal y = Calculate(paramList.ToArray());
-                Point point = new Point(Convert.ToDouble(x), Convert.ToDouble(y));
-                pointsList.Add(point);
+                m_Xs.Add(x);
+                m_Ys.Add(y);
             }
-            
-            
+        }
 
-            return pointsList;
+        public List<decimal> getXsList()
+        {
+            return m_Xs;
+        }
+
+        public List<decimal> getYsList()
+        {
+            return m_Ys;
         }
     }
 }
