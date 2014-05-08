@@ -63,6 +63,17 @@ namespace ParserComponentTest
             Console.WriteLine(".................");
             Console.WriteLine();
 
+            List<decimal> XsHalf = parser.getXsHalfList();
+            List<decimal> YsHalf = parser.getYsHalfList();
+
+            Console.WriteLine();
+            Console.WriteLine(".................");
+            Console.WriteLine("Points:");
+            for (int i = 0; i < XsHalf.Count; ++i)
+            {
+                Console.WriteLine(String.Format("\tx = {0}\ty = {1}", XsHalf.ToArray()[i].ToString(), YsHalf.ToArray()[i].ToString()));
+            }
+
             parser.Dispose();
             Console.Read();
         }

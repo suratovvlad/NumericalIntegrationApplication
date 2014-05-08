@@ -14,7 +14,9 @@ namespace ParserComponent
 
         private List<decimal> m_Xs;
         private List<decimal> m_Ys;
-        
+
+        private List<decimal> m_XsHalf;
+        private List<decimal> m_YsHalf;
 
         public PostfixNotationExpression()
         {
@@ -29,6 +31,8 @@ namespace ParserComponent
 
             m_Xs = new List<decimal>();
             m_Ys = new List<decimal>();
+            m_XsHalf = new List<decimal>();
+            m_YsHalf = new List<decimal>();
         }
 
         private IEnumerable<string> Separate(string input)
@@ -313,7 +317,18 @@ namespace ParserComponent
                 paramList.Add(Convert.ToString(x));
                 decimal y = Calculate(paramList.ToArray());
                 m_Xs.Add(x);
-                m_Ys.Add(y);
+                m_Ys.Add(y);            
+            }
+
+            /// Calculate Halfs
+            for (int i = 1; i <= n; ++i)
+            {
+                decimal halfX = m_Xs[i - 1] + (m_Xs[i] - m_Xs[i - 1]) / 2;
+                List<string> paramList = new List<string>();
+                paramList.Add(Convert.ToString(halfX));
+                decimal halfY = Calculate(paramList.ToArray());
+                m_XsHalf.Add(halfX);
+                m_YsHalf.Add(halfY);
             }
         }
 
@@ -325,6 +340,16 @@ namespace ParserComponent
         public List<decimal> getYsList()
         {
             return m_Ys;
+        }
+
+        public List<decimal> getXsHalfList()
+        {
+            return m_XsHalf;
+        }
+
+        public List<decimal> getYsHalfList()
+        {
+            return m_YsHalf;
         }
     }
 }

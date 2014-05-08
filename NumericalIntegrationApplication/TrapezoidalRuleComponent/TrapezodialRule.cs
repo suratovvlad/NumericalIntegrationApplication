@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace RectangleMethodComponent
+namespace TrapezoidalRuleComponent
 {
-    public class RectangleMethod : Component
+    public class TrapezodialRule : Component
     {
+
         public decimal CalculatePartitionCount(decimal a, decimal b, decimal error, decimal maxSecondDerivative)
         {
             decimal n = 0;
 
             n = (b - a) * (b - a) * (b - a);
-            n /= (24 * error);
+            n /= (12 * error);
             n *= maxSecondDerivative;
             n = Convert.ToDecimal(Math.Sqrt(Convert.ToDouble(n)));
 
@@ -22,14 +23,18 @@ namespace RectangleMethodComponent
         {
             decimal result = 0;
 
-            foreach (decimal value in FunctionValues)
+            for (int i = 1; i < FunctionValues.Count - 1; ++i)
             {
-                result += value;
+                result += FunctionValues[i];
             }
+
+            result += ((FunctionValues[0] + FunctionValues[FunctionValues.Count - 1]) / 2);
 
             result *= ((b - a) / n);
 
             return result;
         }
     }
+
+
 }
