@@ -11,6 +11,18 @@ namespace DifferentiationComponent
         private List<decimal> m_Dys;
         private List<decimal> m_D2ys;
 
+        public List<decimal> CalculateDerivativeByFiniteDifferencies(List<decimal> Xs, List<decimal> Ys)
+        {
+            List<decimal> Dys = new List<decimal>();
+
+            for (int i = 1; i < Ys.Count; ++i)
+            {
+                decimal dy = (Ys[i] - Ys[i - 1]) / (Xs[i] - Xs[i - 1]);
+                Dys.Add(dy);
+            }
+            return Dys;
+        }
+
         public Differentiation(List<decimal> Xs, List<decimal> Ys)
         {
             m_Xs = new List<decimal>(Xs);
