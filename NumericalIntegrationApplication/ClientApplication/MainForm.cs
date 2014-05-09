@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using System.ComponentModel;
 
 using ParserComponent;
 using DifferentiationComponent;
@@ -28,6 +22,11 @@ namespace ClientApplication
             m_methods = new List<string>(new string[] { "Rectangle Method", "Trapezoidal Rule", "Simpson's Rule", "All of these methods" });
             MethodsComboBox.DataSource = m_methods;
             MethodsComboBox.SelectedIndex = 0;
+
+            UserFunctionTextBox.Text = "ln((1+x)/(1-x))";
+            ParamATextBox.Text = Convert.ToString(0);
+            ParamBTextBox.Text = Convert.ToString(1);
+            ErrorTextBox.Text = Convert.ToString(0.0001);
         }
 
         private void calculateButton_Click(object sender, EventArgs e)
@@ -77,7 +76,7 @@ namespace ClientApplication
                             parser.CalculatePoint(a, b, partitionCount);
                             List<decimal> FunctionHalfValues = parser.GetYsHalfList();
                             result = rectangleMethodComponent.Calculate(a, b, partitionCount, FunctionHalfValues);
-                            MessageBox.Show("Rectangle Method:\n" + result.ToString());
+                            MessageBox.Show(result.ToString(), "Rectangle Method");
                             rectangleMethodComponent.Dispose();
                             break;
                         }
@@ -95,7 +94,7 @@ namespace ClientApplication
                             parser.CalculatePoint(a, b, partitionCount);
                             List<decimal> FunctionValues = parser.GetYsList();
                             result = trapezoidalRuleComponent.Calculate(a, b, partitionCount, FunctionValues);
-                            MessageBox.Show("Trapezoidal Rule:\n" + result.ToString());
+                            MessageBox.Show(result.ToString(), "Trapezoidal Rule");
                             trapezoidalRuleComponent.Dispose();
                             break;
                         }
@@ -114,7 +113,7 @@ namespace ClientApplication
                             List<decimal> FunctionHalfValues = parser.GetYsHalfList();
                             List<decimal> FunctionValues = parser.GetYsList();
                             result = simpsonsRuleComponent.Calculate(a, b, partitionCount, FunctionValues, FunctionHalfValues);
-                            MessageBox.Show("Simpson's Rule:\n" + result.ToString());
+                            MessageBox.Show(result.ToString(), "Simpson's Rule");
                             simpsonsRuleComponent.Dispose();
                             break;
                         }
@@ -130,7 +129,7 @@ namespace ClientApplication
                             container.Add(trapezoidalRuleComponent, "Trapezoidal Rule");
                             container.Add(simpsonsRuleComponent, "Simpson's Rule");
 
-                            string message = "All methods\n\n";
+                            string message = "";
 
                             /// Rectangle Method
                             partitionCount = rectangleMethodComponent.CalculatePartitionCount(a, b, error, D2ys.Max());
@@ -174,14 +173,14 @@ namespace ClientApplication
                             result = simpsonsRuleComponent.Calculate(a, b, partitionCount, FunctionValues, FunctionHalfValues);
 
                             message += simpsonsRuleComponent.Site.Name + ":\n" + result.ToString();
-                            MessageBox.Show(message);
+                            MessageBox.Show(message, "All methods");
 
                             container.Dispose();
                             break;
                         }
                     default:
                         {
-                            MessageBox.Show("Choose method");
+                            MessageBox.Show("Choose method", "Warning");
                             break;
                         }
                 }

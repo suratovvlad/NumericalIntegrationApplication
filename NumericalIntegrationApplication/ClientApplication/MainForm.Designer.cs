@@ -54,15 +54,15 @@
             // 
             this.UserFunctionTextBox.Location = new System.Drawing.Point(15, 25);
             this.UserFunctionTextBox.Name = "UserFunctionTextBox";
-            this.UserFunctionTextBox.Size = new System.Drawing.Size(100, 20);
+            this.UserFunctionTextBox.Size = new System.Drawing.Size(145, 20);
             this.UserFunctionTextBox.TabIndex = 1;
             this.UserFunctionTextBox.UseWaitCursor = true;
             // 
             // calculateButton
             // 
-            this.calculateButton.Location = new System.Drawing.Point(124, 104);
+            this.calculateButton.Location = new System.Drawing.Point(203, 126);
             this.calculateButton.Name = "calculateButton";
-            this.calculateButton.Size = new System.Drawing.Size(100, 23);
+            this.calculateButton.Size = new System.Drawing.Size(145, 23);
             this.calculateButton.TabIndex = 6;
             this.calculateButton.Text = "Calculate";
             this.calculateButton.UseVisualStyleBackColor = true;
@@ -71,7 +71,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 88);
+            this.label2.Location = new System.Drawing.Point(12, 112);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 13);
             this.label2.TabIndex = 7;
@@ -79,23 +79,23 @@
             // 
             // ErrorTextBox
             // 
-            this.ErrorTextBox.Location = new System.Drawing.Point(15, 104);
+            this.ErrorTextBox.Location = new System.Drawing.Point(15, 128);
             this.ErrorTextBox.Name = "ErrorTextBox";
-            this.ErrorTextBox.Size = new System.Drawing.Size(100, 20);
+            this.ErrorTextBox.Size = new System.Drawing.Size(145, 20);
             this.ErrorTextBox.TabIndex = 8;
             // 
             // MethodsComboBox
             // 
             this.MethodsComboBox.FormattingEnabled = true;
-            this.MethodsComboBox.Location = new System.Drawing.Point(15, 64);
+            this.MethodsComboBox.Location = new System.Drawing.Point(15, 75);
             this.MethodsComboBox.Name = "MethodsComboBox";
-            this.MethodsComboBox.Size = new System.Drawing.Size(100, 21);
+            this.MethodsComboBox.Size = new System.Drawing.Size(145, 21);
             this.MethodsComboBox.TabIndex = 9;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 48);
+            this.label3.Location = new System.Drawing.Point(12, 59);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 10;
@@ -104,7 +104,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(121, 9);
+            this.label4.Location = new System.Drawing.Point(200, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(13, 13);
             this.label4.TabIndex = 11;
@@ -112,15 +112,15 @@
             // 
             // ParamATextBox
             // 
-            this.ParamATextBox.Location = new System.Drawing.Point(124, 25);
+            this.ParamATextBox.Location = new System.Drawing.Point(203, 25);
             this.ParamATextBox.Name = "ParamATextBox";
-            this.ParamATextBox.Size = new System.Drawing.Size(100, 20);
+            this.ParamATextBox.Size = new System.Drawing.Size(145, 20);
             this.ParamATextBox.TabIndex = 12;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(121, 48);
+            this.label5.Location = new System.Drawing.Point(200, 59);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(13, 13);
             this.label5.TabIndex = 13;
@@ -128,16 +128,16 @@
             // 
             // ParamBTextBox
             // 
-            this.ParamBTextBox.Location = new System.Drawing.Point(124, 64);
+            this.ParamBTextBox.Location = new System.Drawing.Point(203, 75);
             this.ParamBTextBox.Name = "ParamBTextBox";
-            this.ParamBTextBox.Size = new System.Drawing.Size(100, 20);
+            this.ParamBTextBox.Size = new System.Drawing.Size(145, 20);
             this.ParamBTextBox.TabIndex = 14;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(242, 141);
+            this.ClientSize = new System.Drawing.Size(362, 160);
             this.Controls.Add(this.ParamBTextBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.ParamATextBox);
@@ -149,8 +149,9 @@
             this.Controls.Add(this.calculateButton);
             this.Controls.Add(this.UserFunctionTextBox);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "Numerical Integration Application";
             this.ResumeLayout(false);
             this.PerformLayout();
 
