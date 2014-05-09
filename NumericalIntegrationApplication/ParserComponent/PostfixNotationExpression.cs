@@ -306,11 +306,14 @@ namespace ParserComponent
 
         public void CalculatePoint(decimal a, decimal b, decimal n)
         {
-       
+            m_Xs.Clear();
+            m_Ys.Clear();
+            m_XsHalf.Clear();
+            m_YsHalf.Clear();
 
-            decimal h = (a + b) / n;
+            decimal h = (b - a) / n;
 
-            for (int i = 0; i <= n; i++)
+            for (int i = 1; i < n; i++)
             {
                 List<string> paramList = new List<string>();
                 decimal x = a + h * i;
@@ -321,7 +324,7 @@ namespace ParserComponent
             }
 
             /// Calculate Halfs
-            for (int i = 1; i <= n; ++i)
+            for (int i = 1; i < m_Xs.Count; ++i)
             {
                 decimal halfX = m_Xs[i - 1] + (m_Xs[i] - m_Xs[i - 1]) / 2;
                 List<string> paramList = new List<string>();
@@ -332,22 +335,22 @@ namespace ParserComponent
             }
         }
 
-        public List<decimal> getXsList()
+        public List<decimal> GetXsList()
         {
             return m_Xs;
         }
 
-        public List<decimal> getYsList()
+        public List<decimal> GetYsList()
         {
             return m_Ys;
         }
 
-        public List<decimal> getXsHalfList()
+        public List<decimal> GetXsHalfList()
         {
             return m_XsHalf;
         }
 
-        public List<decimal> getYsHalfList()
+        public List<decimal> GetYsHalfList()
         {
             return m_YsHalf;
         }
