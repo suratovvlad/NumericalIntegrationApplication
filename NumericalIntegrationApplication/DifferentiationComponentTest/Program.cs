@@ -153,11 +153,64 @@ namespace DifferentiationComponentTest
             Console.WriteLine();
         }
 
+        static private void ThirdTest()
+        {
+            int n = 100;
+            decimal a = 0;
+            decimal b = 7;
+            decimal h = (b - a) / n;
+
+            List<decimal> Xs = new List<decimal>();
+            List<decimal> Ys = new List<decimal>();
+            for (int i = 0; i <= n; ++i)
+            {
+                decimal x = a + h * i;
+                Xs.Add(x);
+                Ys.Add(UserFunction(x));
+            }
+
+            Console.WriteLine("Points:");
+            for (int i = 0; i < Xs.Count; ++i)
+            {
+                Console.WriteLine(String.Format("For x = {0}, y = {1}", Xs[i].ToString(), Ys[i].ToString()));
+            }
+
+            Console.WriteLine();
+            Console.WriteLine(".................");
+            Console.WriteLine();
+
+
+            Differentiation differentiation = new Differentiation(Xs, Ys);
+
+            List<decimal> firstDerivativesList = differentiation.CalculateDerivativeByFiniteDifferencies(Xs, Ys);
+            Console.WriteLine("Polynomius first derivative:");
+            foreach (decimal dy in firstDerivativesList)
+            {
+                Console.WriteLine(String.Format("\t{0}", dy.ToString()));
+            }
+
+            Console.WriteLine();
+            Console.WriteLine(".................");
+            Console.WriteLine();
+
+            List<decimal> secondDerivativesList = differentiation.CalculateDerivativeByFiniteDifferencies(Xs, firstDerivativesList);
+            Console.WriteLine("Polynomius second derivative:");
+            foreach (decimal d2y in secondDerivativesList)
+            {
+                Console.WriteLine(String.Format("\t{0}", d2y.ToString()));
+            }
+
+            Console.WriteLine();
+            Console.WriteLine(".................");
+            Console.WriteLine();
+        }
+
         static void Main(string[] args)
         {
             //FirstTest();
             //Console.Read();
-            SecondTest();
+            //SecondTest();
+            ThirdTest();
             Console.Read();
         }
     }
