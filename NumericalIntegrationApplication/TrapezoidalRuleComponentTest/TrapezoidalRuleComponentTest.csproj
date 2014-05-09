@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6F043470-1D2F-45CF-88E5-56AA6F72D610}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{F037D880-BCAF-416B-B777-2829210BC5D7}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClientApplication</RootNamespace>
-    <AssemblyName>ClientApplication</AssemblyName>
+    <RootNamespace>TrapezoidalRuleComponentTest</RootNamespace>
+    <AssemblyName>TrapezoidalRuleComponentTest</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -34,46 +34,15 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -86,14 +55,6 @@
     <ProjectReference Include="..\ParserComponent\ParserComponent.csproj">
       <Project>{f0d32e90-11bf-4259-a5ec-75dba3a9b887}</Project>
       <Name>ParserComponent</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RectangleMethodComponent\RectangleMethodComponent.csproj">
-      <Project>{0540dcff-f33a-4e5a-a65f-337e0b48fa93}</Project>
-      <Name>RectangleMethodComponent</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SimpsonsRuleComponent\SimpsonsRuleComponent.csproj">
-      <Project>{7e8d956f-03e1-4bb9-9b7e-0f97528663b0}</Project>
-      <Name>SimpsonsRuleComponent</Name>
     </ProjectReference>
     <ProjectReference Include="..\TrapezoidalRuleComponent\TrapezoidalRuleComponent.csproj">
       <Project>{c55f07c2-f513-4342-89e2-18ac4da90980}</Project>
