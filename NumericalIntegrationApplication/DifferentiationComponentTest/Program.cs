@@ -9,7 +9,7 @@ namespace DifferentiationComponentTest
         static private decimal UserFunction(decimal x)
         {
             //return Convert.ToDecimal(Math.Cos(Convert.ToDouble(x)));
-            return x * x * x;
+            return x * x * x * x;
         }
 
         static private void FirstTest()
@@ -104,7 +104,7 @@ namespace DifferentiationComponentTest
 
         static private void SecondTest()
         {
-            int n = 100;
+            int n = 10;
             decimal a = 0;
             decimal b = 7;
             decimal h = (b - a) / n;
@@ -146,6 +146,28 @@ namespace DifferentiationComponentTest
             foreach (decimal d2y in secondDerivativesList)
             {
                 Console.WriteLine(String.Format("\t{0}", d2y.ToString()));
+            }
+
+            Console.WriteLine();
+            Console.WriteLine(".................");
+            Console.WriteLine();
+
+            List<decimal> thirdDerivativesList = differentiation.GetThirdDervative();
+            Console.WriteLine("Polynomius third derivative:");
+            foreach (decimal d3y in thirdDerivativesList)
+            {
+                Console.WriteLine(String.Format("\t{0}", d3y.ToString()));
+            }
+
+            Console.WriteLine();
+            Console.WriteLine(".................");
+            Console.WriteLine();
+
+            List<decimal> fourthDerivativesList = differentiation.GetFourthDervative();
+            Console.WriteLine("Polynomius fourth derivative:");
+            foreach (decimal d4y in fourthDerivativesList)
+            {
+                Console.WriteLine(String.Format("\t{0}", d4y.ToString()));
             }
 
             Console.WriteLine();
@@ -209,8 +231,8 @@ namespace DifferentiationComponentTest
         {
             //FirstTest();
             //Console.Read();
-            //SecondTest();
-            ThirdTest();
+            SecondTest();
+            //ThirdTest();
             Console.Read();
         }
     }

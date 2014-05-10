@@ -10,6 +10,8 @@ namespace DifferentiationComponent
         private List<decimal> m_Ys;
         private List<decimal> m_Dys;
         private List<decimal> m_D2ys;
+        private List<decimal> m_D3ys;
+        private List<decimal> m_D4ys;
 
         public List<decimal> CalculateDerivativeByFiniteDifferencies(List<decimal> Xs, List<decimal> Ys)
         {
@@ -34,11 +36,15 @@ namespace DifferentiationComponent
         {
             decimal[] Dys = new decimal[m_Xs.Count];
             decimal[] D2ys = new decimal[m_Xs.Count];
+            decimal[] D3ys = new decimal[m_Xs.Count];
+            decimal[] D4ys = new decimal[m_Xs.Count];
 
             for (int i = 0; i < m_Xs.Count; ++i)
             {
                 Dys[i] = 0;
                 D2ys[i] = 0;
+                D3ys[i] = 0;
+                D4ys[i] = 0;
             }
 
             for (int i = 4; i < m_Xs.Count; i += 4)
@@ -54,6 +60,7 @@ namespace DifferentiationComponent
 
                 for (int j = 0; j <= 4; ++j)
                 {
+                    /// First
                     if (Dys[i - 4 + j] != 0)
                     {
                         Dys[i - 4 + j] += CalculateFirstDerivativeOfLagrangeFourthPolynomius(m_Xs[i - 4 + j], Xs, Ys);
@@ -64,6 +71,7 @@ namespace DifferentiationComponent
                         Dys[i - 4 + j] = CalculateFirstDerivativeOfLagrangeFourthPolynomius(m_Xs[i - 4 + j], Xs, Ys);
                     }
 
+                    /// Second
                     if (D2ys[i - 4 + j] != 0)
                     {
                         D2ys[i - 4 + j] += CalculateSecondDerivativeOfLagrangeFourthPolynomius(m_Xs[i - 4 + j], Xs, Ys);
@@ -73,14 +81,36 @@ namespace DifferentiationComponent
                     {
                         D2ys[i - 4 + j] = CalculateSecondDerivativeOfLagrangeFourthPolynomius(m_Xs[i - 4 + j], Xs, Ys);
                     }
-                    //Dys[i - 4 + j] += CalculateFirstDerivativeOfLagrangeFourthPolynomius(m_Xs[i - 4 + j], Xs, Ys);
-                    //D2ys[i - 4 + j] += CalculateSecondDerivativeOfLagrangeFourthPolynomius(m_Xs[i - 4 + j], Xs, Ys);
+
+                    /// Third
+                    if (D3ys[i - 4 + j] != 0)
+                    {
+                        D3ys[i - 4 + j] += CalculateThirdDerivativeOfLagrangeFourthPolynomius(m_Xs[i - 4 + j], Xs, Ys);
+                        D3ys[i - 4 + j] /= 2;
+                    }
+                    else
+                    {
+                        D3ys[i - 4 + j] = CalculateThirdDerivativeOfLagrangeFourthPolynomius(m_Xs[i - 4 + j], Xs, Ys);
+                    }
+
+                    /// Fourth
+                    if (D4ys[i - 4 + j] != 0)
+                    {
+                        D4ys[i - 4 + j] += CalculateFourthDerivativeOfLagrangeFourthPolynomius(m_Xs[i - 4 + j], Xs, Ys);
+                        D4ys[i - 4 + j] /= 2;
+                    }
+                    else
+                    {
+                        D4ys[i - 4 + j] = CalculateFourthDerivativeOfLagrangeFourthPolynomius(m_Xs[i - 4 + j], Xs, Ys);
+                    }
                 }
                 
             }
 
             m_Dys = new List<decimal>(Dys);
             m_D2ys = new List<decimal>(D2ys);
+            m_D3ys = new List<decimal>(D3ys);
+            m_D4ys = new List<decimal>(D4ys);
         }
 
         public List<decimal> GetFirstDervative()
@@ -91,6 +121,40 @@ namespace DifferentiationComponent
         public List<decimal> GetSecondDervative()
         {
             return m_D2ys;
+        }
+
+        public List<decimal> GetThirdDervative()
+        {
+            return m_D3ys;
+        }
+
+        public List<decimal> GetFourthDervative()
+        {
+            return m_D4ys;
+        }
+
+        public decimal CalculateFourthDerivativeOfLagrangeFourthPolynomius(decimal x, List<decimal> Xs, List<decimal> Ys)
+        {
+            List<decimal> derivativeCoeffsLagrangeList = GetFourthDerivativeOfLagrangeFourthPolynomius(Xs, Ys);
+            double result = 0;
+
+            for (int i = 0; i < derivativeCoeffsLagrangeList.Count; ++i)
+            {
+                result += Convert.ToDouble(derivativeCoeffsLagrangeList[i]) * Math.Pow(Convert.ToDouble(x), Convert.ToDouble(i));
+            }
+            return Convert.ToDecimal(result);
+        }
+
+        public decimal CalculateThirdDerivativeOfLagrangeFourthPolynomius(decimal x, List<decimal> Xs, List<decimal> Ys)
+        {
+            List<decimal> derivativeCoeffsLagrangeList = GetThirdDerivativeOfLagrangeFourthPolynomius(Xs, Ys);
+            double result = 0;
+
+            for (int i = 0; i < derivativeCoeffsLagrangeList.Count; ++i)
+            {
+                result += Convert.ToDouble(derivativeCoeffsLagrangeList[i]) * Math.Pow(Convert.ToDouble(x), Convert.ToDouble(i));
+            }
+            return Convert.ToDecimal(result);
         }
 
         public decimal CalculateSecondDerivativeOfLagrangeFourthPolynomius(decimal x, List<decimal> Xs, List<decimal> Ys)
@@ -127,6 +191,42 @@ namespace DifferentiationComponent
                 result += Convert.ToDouble(coeffsLagrangeList[i]) * Math.Pow(Convert.ToDouble(x), Convert.ToDouble(i));
             }
             return Convert.ToDecimal(result);
+        }
+
+        public List<decimal> GetFourthDerivativeOfLagrangeFourthPolynomius(List<decimal> Xs, List<decimal> Ys)
+        {
+            /// Xs.Count == Ys.Count == 5
+            /// coeffsArray.Length == 5
+            /// But returnValue.Count == 1
+            decimal[] coeffsArray = GetThirdDerivativeOfLagrangeFourthPolynomius(Xs, Ys).ToArray();
+            List<decimal> derivativeCoeffsList = new List<decimal>();
+            for (int i = 0; i < coeffsArray.Length; ++i)
+            {
+                coeffsArray[i] *= i;
+                if (i != 0)
+                {
+                    derivativeCoeffsList.Add(coeffsArray[i]);
+                }
+            }
+            return derivativeCoeffsList;
+        }
+
+        public List<decimal> GetThirdDerivativeOfLagrangeFourthPolynomius(List<decimal> Xs, List<decimal> Ys)
+        {
+            /// Xs.Count == Ys.Count == 5
+            /// coeffsArray.Length == 5
+            /// But returnValue.Count == 2
+            decimal[] coeffsArray = GetSecondDerivativeOfLagrangeFourthPolynomius(Xs, Ys).ToArray();
+            List<decimal> derivativeCoeffsList = new List<decimal>();
+            for (int i = 0; i < coeffsArray.Length; ++i)
+            {
+                coeffsArray[i] *= i;
+                if (i != 0)
+                {
+                    derivativeCoeffsList.Add(coeffsArray[i]);
+                }
+            }
+            return derivativeCoeffsList;
         }
 
         public List<decimal> GetSecondDerivativeOfLagrangeFourthPolynomius(List<decimal> Xs, List<decimal> Ys)

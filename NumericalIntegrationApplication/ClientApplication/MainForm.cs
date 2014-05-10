@@ -52,10 +52,14 @@ namespace ClientApplication
 
                 Differentiation differentiationComponent = new Differentiation(Xs, Ys);
                 
-                List<decimal> Dys = differentiationComponent.CalculateDerivativeByFiniteDifferencies(Xs, Ys);
-                List<decimal> D2ys = differentiationComponent.CalculateDerivativeByFiniteDifferencies(Xs, Dys);
-                List<decimal> D3ys = differentiationComponent.CalculateDerivativeByFiniteDifferencies(Xs, D2ys);
-                List<decimal> D4ys = differentiationComponent.CalculateDerivativeByFiniteDifferencies(Xs, D3ys);
+                List<decimal> Dys = differentiationComponent.GetFirstDervative();
+                    //= differentiationComponent.CalculateDerivativeByFiniteDifferencies(Xs, Ys);
+                List<decimal> D2ys = differentiationComponent.GetSecondDervative();
+                    //= differentiationComponent.CalculateDerivativeByFiniteDifferencies(Xs, Dys);
+                List<decimal> D3ys = differentiationComponent.GetThirdDervative();
+                    //= differentiationComponent.CalculateDerivativeByFiniteDifferencies(Xs, D2ys);
+                List<decimal> D4ys = differentiationComponent.GetFourthDervative();
+                    //= differentiationComponent.CalculateDerivativeByFiniteDifferencies(Xs, D3ys);
 
                 decimal result = 0;
                 decimal partitionCount = 0;
